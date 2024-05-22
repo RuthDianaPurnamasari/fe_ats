@@ -1,0 +1,1 @@
+export let urlAPI = "https://ws-atsruth2024-e7b20d58134d.herokuapp.com/penelitian";
