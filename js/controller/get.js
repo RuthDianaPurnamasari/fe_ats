@@ -1,4 +1,3 @@
-
 import { isiTabel } from "../temp/table.js";
 
 export function isiTablePresensi(results) {
@@ -6,28 +5,35 @@ export function isiTablePresensi(results) {
     results.forEach(isiRow);
     console.log(results);
 }
-function isiRow(value) {
+
+function isiRow(rowData) {
+
+    const dataObject = rowData.reduce((obj, item) => {
+        obj[item.Key] = item.Value;
+        return obj;
+    }, {});
+
     let content = 
-    isiTabel.replace("#ID#", value._id)
-            .replace("#JUDUL#", value.judul)
-            .replace("#INSTITUSI#", value.institusi)
-            .replace("#PENULIS#", value.penulis)
-            .replace("#DATETIME#", value.datetime)
-            .replace("#RINGKASAN#", value.ringkasan);
-        
-        
-            const tableBody = document.querySelector('#iniTabel tbody');
+    isiTabel.replace("#ID#", dataObject._id || '')
+            .replace("#IDD#", dataObject._id || '')
+            .replace("#JUDUL#", dataObject.judul || '')
+            .replace("#INSTITUSI#", dataObject.institusi || '')
+            .replace("#PENULIS#", dataObject.penulis || '')
+            .replace("#PENULISS#", dataObject.penulis || '')
+            .replace("#DATETIME#", dataObject.datetime || '')
+            .replace("#RINGKASAN#", dataObject.ringkasan || '')
+            
+    const tableBody = document.querySelector('#iniTabel tbody');
     if (tableBody) {
-        // Create a new row element
         let newRow = document.createElement('tr');
-        newRow.innerHTML = content; // Set content to the new row
-        tableBody.appendChild(newRow); // Append the new row to the tbody
-    }
+        newRow.innerHTML = content;
+        tableBody.appendChild(newRow);
+    }
 }
 
 function clearTable() {
     const tableBody = document.querySelector('#iniTabel tbody');
     if (tableBody) {
-        tableBody.innerHTML = ''; // Clear the inner HTML of the tbody
-    }
+        tableBody.innerHTML = '';
+    }
 }
