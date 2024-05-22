@@ -1,39 +1,18 @@
+import { addInner } from "https://bukulapak.github.io/element/process.js";
 import { isiTabel } from "../temp/table.js";
-
-export function isiTablePresensi(results) {
-    clearTable();
+export function isiTablePenelitian(results) {
     results.forEach(isiRow);
-    console.log(results);
 }
 
-function isiRow(rowData) {
-
-    const dataObject = rowData.reduce((obj, item) => {
-        obj[item.Key] = item.Value;
-        return obj;
-    }, {});
-
-    let content = 
-    isiTabel.replace("#ID#", dataObject._id || '')
-            .replace("#IDD#", dataObject._id || '')
-            .replace("#JUDUL#", dataObject.judul || '')
-            .replace("#INSTITUSI#", dataObject.institusi || '')
-            .replace("#PENULIS#", dataObject.penulis || '')
-            .replace("#PENULISS#", dataObject.penulis || '')
-            .replace("#DATETIME#", dataObject.datetime || '')
-            .replace("#RINGKASAN#", dataObject.ringkasan || '')
-            
-    const tableBody = document.querySelector('#iniTabel tbody');
-    if (tableBody) {
-        let newRow = document.createElement('tr');
-        newRow.innerHTML = content;
-        tableBody.appendChild(newRow);
-    }
-}
-
-function clearTable() {
-    const tableBody = document.querySelector('#iniTabel tbody');
-    if (tableBody) {
-        tableBody.innerHTML = '';
-    }
+function isiRow(value) {
+    let content =
+    isiTabel.replace("#ID#", value._id || "")
+            .replace("#IDD#", value._id || "")
+            .replace("#JUDUL#", value.judul || "")
+            .replace("#INSTITUSI#", value.institusi || "")
+            .replace("#PENULIS#", value.penulis || "")
+            .replace("#PENULISS#", value.penulis || "")
+            .replace("#DATETIME#", value.datetime || "")
+            .replace("#RINGKASAN#", value.ringkasan || "");
+    addInner("iniTabel", content);
 }
