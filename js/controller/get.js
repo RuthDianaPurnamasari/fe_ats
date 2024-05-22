@@ -8,12 +8,12 @@ export function isiTablePresensi(results) {
 }
 function isiRow(value) {
     let content = 
-    isiTabel.replace("#JUDUL#", value.Judul)
-            .replace("#INSTITUSI#", value.Institusi)
-            .replace("#BIDANGSTUDI#", value.Bidang_Studi)
-            .replace("#PENULIS#", value.Penulis)
-            .replace("#CATEGORY#", value.Category)
-            .replace("#RINGKASAN#", value.Ringkasan);
+    isiTabel.replace("#ID#", value._id)
+            .replace("#JUDUL#", value.judul)
+            .replace("#INSTITUSI#", value.institusi)
+            .replace("#PENULIS#", value.penulis)
+            .replace("#DATETIME#", value.datetime)
+            .replace("#RINGKASAN#", value.ringkasan);
         
         
             const tableBody = document.querySelector('#iniTabel tbody');
